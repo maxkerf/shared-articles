@@ -23,6 +23,7 @@ function createArticle(articleData) {
 	const h3 = document.createElement("h3");
 	h3.textContent = articleData.title;
 	h3.ariaHidden = "false";
+	h3.tabIndex = "-1";
 	article.append(h3);
 
 	const button = document.createElement("button");
@@ -46,12 +47,14 @@ function createArticle(articleData) {
 		p.ariaHidden = isActive ? "false" : "true";
 		a.ariaHidden = isActive ? "false" : "true";
 		isActive ? a.removeAttribute("tabindex") : a.setAttribute("tabindex", "-1");
+		setTimeout(() => (isActive ? p.focus() : h3.focus()), 300);
 	};
 	article.append(button);
 
 	const p = document.createElement("p");
 	p.textContent = articleData.text;
 	p.ariaHidden = "true";
+	p.tabIndex = "-1";
 	article.append(p);
 
 	const a = document.createElement("a");
